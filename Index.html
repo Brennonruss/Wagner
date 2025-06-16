@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagner Home Improvements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+            background: url('https://i.imgur.com/OoLT1eN.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .fade-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000; /* Black overlay */
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .content, .services-strip, .gallery, .contact-strip, .about-strip {
+            position: relative;
+            z-index: 2; /* Above fade overlay */
+        }
+        .content {
+            height: 90vh; /* Reduced to show part of the services strip */
+            overflow: hidden;
+            min-height: 400px; /* Minimum height for mobile */
+        }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        .content-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+            padding: 20px;
+        }
+        .content-container h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 4em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .content-container p.slogan {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.5em;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .content-container p.location {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2em;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .content-container .services {
+            position: absolute;
+            bottom: 10vh;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Reduced gap for mobile */
+            flex-wrap: wrap;
+            z-index: 1;
+        }
+        .content-container .services span {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9em; /* Slightly smaller for mobile */
+            color: #f0f0f0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+        }
+        .bounce-arrow {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em; /* Smaller for mobile */
+            color: white;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px; /* Touch target */
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+        .services-strip {
+            width: 100%;
+            padding: 40px 0;
+            background: #fff; /* White background */
+            text-align: left;
+            color: #4a4a4a; /* Dark grey text */
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            z-index: 2; /* Above fade overlay */
+        }
+        .services-strip h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            color: #4a4a4a;
+        }
+        .services-strip .service-column {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 10px; /* Reduced padding for mobile */
+        }
+        .services-strip .service-column h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.6em; /* Slightly smaller for mobile */
+            margin-bottom: 10px;
+            color: #4a4a4a;
+        }
+        .services-strip .service-column ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .services-strip .service-column ul li {
+            font-family: 'Georgia', serif;
+            font-size: 1em; /* Slightly smaller for mobile */
+            margin-bottom: 8px;
+            color: #4a4a4a;
+        }
+        .gallery {
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 2; /* Above fade overlay */
+        }
+        .gallery h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .gallery .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            gap: 15px; /* Reduced gap for mobile */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+        }
+        .gallery .gallery-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for better look */
+        }
+        .gallery .gallery-item {
+            min-width: 250px; /* Reduced for mobile */
+            height: 150px; /* Reduced for mobile */
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery .gallery-item:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .gallery .scroll-arrow {
+            position: absolute;
+            top: 60%;
+            transform: translateY(-50%);
+            font-size: 1.5em; /* Smaller for mobile */
+            color: #fff;
+            cursor: pointer;
+            z-index: 1;
+            padding: 15px; /* Larger touch target */
+            animation: bounce 2s infinite;
+        }
+        .gallery .scroll-left {
+            left: 10px;
+        }
+        .gallery .scroll-right {
+            right: 10px;
+        }
+        .contact-strip {
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            color: #fff;
+            z-index: 2; /* Above fade overlay */
+        }
+        .contact-strip h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .contact-strip p {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            margin: 10px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .about-strip {
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            color: #fff;
+            z-index: 2; /* Above fade overlay */
+        }
+        .about-strip h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .about-strip p {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            margin: 10px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 768px) {
+            .content {
+                height: auto;
+                min-height: 400px;
+            }
+            .content-container {
+                height: auto;
+                padding: 10px;
+            }
+            .content-container h1 {
+                font-size: 2.5em;
+            }
+            .content-container p.slogan {
+                font-size: 1.2em;
+            }
+            .content-container p.location {
+                font-size: 1em;
+            }
+            .content-container .services {
+                bottom: 5vh;
+                padding: 10px 0;
+            }
+            .content-container .services span {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+            .bounce-arrow {
+                font-size: 1.2em;
+                padding: 8px;
+            }
+            .services-strip {
+                padding: 20px 0;
+            }
+            .services-strip h2 {
+                font-size: 2em;
+            }
+            .services-strip .service-column {
+                min-width: 100%;
+                padding: 0 10px;
+            }
+            .services-strip .service-column h3 {
+                font-size: 1.4em;
+            }
+            .services-strip .service-column ul li {
+                font-size: 0.9em;
+            }
+            .gallery .gallery-item {
+                min-width: 200px;
+                height: 120px;
+            }
+            .gallery .scroll-arrow {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+            .contact-strip h2, .about-strip h2 {
+                font-size: 2em;
+            }
+            .contact-strip p, .about-strip p {
+                font-size: 1em;
+            }
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            z-index: 3; /* Above fade overlay */
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 100;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 5px 10px; /* Touch target */
+        }
+    </style>
+</head>
+<body>
+    <div class="fade-overlay"></div>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Services</a></li>
+            <li><a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })">Gallery</a></li>
+            <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Contact</a></li>
+            <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">About</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <video autoplay muted loop>
+            <source src="https://i.imgur.com/5r2fs0S.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content-container">
+            <h1>WAGNER HOME IMPROVEMENTS</h1>
+            <p class="slogan">FIX IT FAST & BUILD IT TO LAST - YOUR TRUSTED HOME SOLUTION</p>
+            <p class="location">Serving Bucks, Montgomery & surrounding areas</p>
+            <div class="services">
+                <span>Assembly & Installation</span>
+                <span>General Repairs</span>
+                <span>Outdoor Maintenance</span>
+                <span>Tile & Groutwork</span>
+                <span>Home Maintenance</span>
+                <span>Flooring</span>
+                <span>Carpentry</span>
+                <span>Plumbing</span>
+                <span>Electrical</span>
+                <span>Painting & Drywall</span>
+            </div>
+            <div class="bounce-arrow" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">↓</div>
+        </div>
+    </div>
+    <div class="services-strip" id="services">
+        <h2>Services</h2>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+            <div class="service-column">
+                <h3>Carpentry</h3>
+                <ul>
+                    <li>Building or repairing shelves, cabinets, or furniture</li>
+                    <li>Installing or repairing doors, window frames, or trim</li>
+                    <li>Fixing or installing baseboards, crown molding, or wainscoting</li>
+                    <li>Constructing small structures like decks, pergolas, or fences</li>
+                </ul>
+                <h3>Plumbing</h3>
+                <ul>
+                    <li>Fixing leaky faucets, pipes, or toilets</li>
+                    <li>Installing or replacing sinks, faucets, or showerheads</li>
+                    <li>Unclogging drains or toilets</li>
+                    <li>Repairing or replacing garbage disposals</li>
+                </ul>
+                <h3>Electrical</h3>
+                <ul>
+                    <li>Installing or replacing light fixtures, ceiling fans, or switches</li>
+                    <li>Troubleshooting minor electrical issues</li>
+                    <li>Installing outlets or dimmer switches</li>
+                    <li>Replacing smoke or carbon monoxide detectors</li>
+                </ul>
+            </div>
+            <div class="service-column">
+                <h3>Painting and Drywall</h3>
+                <ul>
+                    <li>Interior and exterior painting</li>
+                    <li>Patching or repairing drywall holes and cracks</li>
+                    <li>Wallpapering or removing wallpaper</li>
+                    <li>Touch-up painting or staining</li>
+                </ul>
+                <h3>Flooring</h3>
+                <ul>
+                    <li>Installing or repairing tile, laminate, vinyl, or hardwood flooring</li>
+                    <li>Grout cleaning or replacement</li>
+                    <li>Fixing squeaky floorboards</li>
+                    <li>Replacing damaged floor tiles or planks</li>
+                </ul>
+                <h3>General Repairs</h3>
+                <ul>
+                    <li>Fixing broken or sticky doors and windows</li>
+                    <li>Repairing or replacing screens</li>
+                    <li>Patching holes in walls or ceilings</li>
+                    <li>Tightening loose hardware (hinges, knobs, etc.)</li>
+                </ul>
+            </div>
+            <div class="service-column">
+                <h3>Assembly and Installation</h3>
+                <ul>
+                    <li>Installing blinds, curtains, or window treatments</li>
+                    <li>Mounting TVs, mirrors, or artwork</li>
+                    <li>Installing closet organizers or storage systems</li>
+                </ul>
+                <h3>Outdoor Maintenance</h3>
+                <ul>
+                    <li>Cleaning or repairing gutters</li>
+                    <li>Power washing decks, fences, or siding</li>
+                    <li>Minor fence or gate repairs</li>
+                    <li>Sealing or staining decks and fences</li>
+                </ul>
+                <h3>Tile and Grout Work</h3>
+                <ul>
+                    <li>Installing backsplashes or wall tiles</li>
+                    <li>Regrouting or recaulking showers and tubs</li>
+                </ul>
+                <h3>Home Maintenance</h3>
+                <ul>
+                    <li>Caulking windows, doors, or bathtubs</li>
+                    <li>Inspecting and replacing HVAC filters</li>
+                </ul>
+                <h3>Miscellaneous</h3>
+                <ul>
+                    <li>Hanging holiday lights or decorations</li>
+                    <li>Childproofing (installing cabinet locks, gates, etc.)</li>
+                    <li>Minor masonry work (e.g., repairing brickwork or stone)</li>
+                    <li>Small concrete repairs (e.g., patching cracks)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="gallery" id="gallery">
+        <h2>Gallery</h2>
+        <div class="scroll-arrow scroll-left" onclick="scrollGallery(-300)">←</div>
+        <div class="gallery-container">
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/T8V5sDF.jpg');"></div>
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/zpVf0Yd.jpg');"></div>
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/f4hp2Qj.jpg');"></div>
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/E7fcnIe.jpg');"></div>
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/R6IbZiP.jpg');"></div>
+            <div class="gallery-item" style="background-image: url('https://i.imgur.com/84Bw4Qv.jpg');"></div>
+        </div>
+        <div class="scroll-arrow scroll-right" onclick="scrollGallery(300)">→</div>
+    </div>
+    <div class="contact-strip" id="contact">
+        <h2>Contact</h2>
+        <p>For inquiries or to schedule a service, please call us at (123) 456-7890 or email us at info@wagnerhomeimprovements.com. We are available Monday to Friday, 8 AM - 6 PM, and Saturday, 9 AM - 2 PM.</p>
+    </div>
+    <div class="about-strip" id="about">
+        <h2>About</h2>
+        <p>Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
+    </div>
+    <script>
+        function scrollGallery(distance) {
+            const container = document.querySelector('.gallery-container');
+            container.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const overlay = document.querySelector('.fade-overlay');
+            const scrollPosition = window.pageYOffset;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const servicesOffset = document.getElementById('services').offsetTop;
+            const scrollDirection = scrollPosition > lastScroll ? 'down' : 'up';
+            lastScroll = scrollPosition;
+
+            if (scrollDirection === 'down' && scrollPosition < servicesOffset) {
+                const opacity = 1 - (scrollPosition / servicesOffset);
+                overlay.style.opacity = Math.max(0, opacity); // Fade from 1 to 0 as scrolling down
+            } else if (scrollDirection === 'up' && scrollPosition <= servicesOffset) {
+                const opacity = scrollPosition / servicesOffset;
+                overlay.style.opacity = Math.min(1, opacity); // Fade from 0 to 1 as scrolling up
+            } else if (scrollPosition >= servicesOffset) {
+                overlay.style.opacity = 0; // Fully clear after services strip
+            }
+        });
+    </script>
+</body>
+</html>
