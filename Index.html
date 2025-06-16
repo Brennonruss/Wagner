@@ -244,7 +244,7 @@
             position: absolute;
             top: 60%;
             transform: translateY(-50%);
-            font-size: 1.5em; /* Consistent size */
+            font-size: 2em; /* Increased font size for consistency */
             color: #fff;
             cursor: pointer;
             z-index: 1;
@@ -404,11 +404,7 @@
                 display: none; /* Hide services on mobile */
             }
             .bounce-arrow {
-                font-size: 1.2em;
-                padding: 8px;
-                bottom: 10px; /* Position near the bottom of content, above services strip */
-                transform: translateX(-50%) translateY(0); /* Remove negative translateY to keep it visible */
-                position: absolute; /* Ensure proper positioning relative to content */
+                display: none; /* Remove bouncing arrow on mobile */
             }
             .services-strip {
                 padding: 20px 0;
@@ -426,8 +422,7 @@
                 height: 120px;
             }
             .gallery .scroll-arrow {
-                font-size: 1.2em;
-                padding: 10px;
+                font-size: 2em; /* Increased font size for consistency on mobile */
             }
             .contact-strip h2, .about-strip h2 {
                 font-size: 2em;
