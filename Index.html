@@ -114,9 +114,9 @@
         }
         .bounce-arrow {
             position: absolute;
-            bottom: 7vh; /* Moved down slightly */
+            bottom: 0; /* Moved to bottom edge */
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(-50px); /* Adjusted upward slightly to align with services line */
             font-size: 1.5em; /* Smaller for mobile */
             color: white;
             font-weight: 700; /* Thicker */
@@ -127,9 +127,9 @@
             padding: 10px; /* Touch target */
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-10px); }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(-10px); }
+            40% { transform: translateX(-50%) translateY(-50px); }
+            60% { transform: translateX(-50%) translateY(-40px); }
         }
         .services-strip {
             width: 100%;
@@ -390,7 +390,7 @@
             }
             .content-container h1 {
                 font-size: 2.5em;
-                margin-top: 20px; /* Lower the heading */
+                margin-top: 40px; /* Move down more on mobile */
             }
             .content-container p.slogan {
                 font-size: 1.2em;
@@ -399,14 +399,7 @@
                 font-size: 1em;
             }
             .content-container .services {
-                bottom: 5vh;
-                padding: 10px 0;
-                position: relative; /* Remove absolute positioning on mobile */
-                margin-top: 20px; /* Space from text above */
-            }
-            .content-container .services span {
-                font-size: 0.8em;
-                padding: 3px 8px;
+                display: none; /* Hide services on mobile */
             }
             .bounce-arrow {
                 font-size: 1.2em;
