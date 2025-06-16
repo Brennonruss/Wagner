@@ -58,6 +58,7 @@
             justify-content: center;
             z-index: 1;
             padding: 20px;
+            min-height: 300px; /* Ensure minimum height for mobile */
         }
         .fade-in {
             opacity: 0;
@@ -90,13 +91,13 @@
         }
         .content-container .services {
             position: absolute;
-            bottom: 10vh;
+            bottom: 5vh; /* Adjusted to prevent overlap */
             width: 100vw; /* Full screen width */
             background: rgba(0, 0, 0, 0.3);
-            padding: 20px 0;
+            padding: 15px 0; /* Reduced padding */
             display: flex;
             justify-content: center;
-            gap: 15px; /* Reduced gap for mobile */
+            gap: 10px; /* Reduced gap for mobile */
             flex-wrap: wrap;
             z-index: 1;
             left: 0; /* Ensure it starts from the left edge */
@@ -109,17 +110,18 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 5px 10px;
+            white-space: nowrap; /* Prevent text wrapping */
         }
         .bounce-arrow {
             position: absolute;
-            bottom: 5vh;
+            bottom: 7vh; /* Moved down slightly */
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.5em; /* Smaller for mobile */
             color: white;
             font-weight: 700; /* Thicker */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Thicker shadow */
-            animation: bounce 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Drop shadow */
+            animation: bounce 2s infinite; /* Re-added animation */
             cursor: pointer;
             z-index: 1;
             padding: 10px; /* Touch target */
@@ -241,12 +243,12 @@
             position: absolute;
             top: 60%;
             transform: translateY(-50%);
-            font-size: 1.5em; /* Smaller for mobile */
+            font-size: 1.5em; /* Consistent size */
             color: #fff;
             cursor: pointer;
             z-index: 1;
             padding: 15px; /* Larger touch target */
-            animation: bounce 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Drop shadow */
         }
         .gallery .scroll-left {
             left: 10px;
@@ -383,9 +385,12 @@
             .content-container {
                 height: auto;
                 padding: 10px;
+                justify-content: flex-start; /* Align content from top */
+                min-height: 300px; /* Ensure space for text */
             }
             .content-container h1 {
                 font-size: 2.5em;
+                margin-top: 20px; /* Lower the heading */
             }
             .content-container p.slogan {
                 font-size: 1.2em;
@@ -396,6 +401,8 @@
             .content-container .services {
                 bottom: 5vh;
                 padding: 10px 0;
+                position: relative; /* Remove absolute positioning on mobile */
+                margin-top: 20px; /* Space from text above */
             }
             .content-container .services span {
                 font-size: 0.8em;
@@ -481,7 +488,7 @@
                 <span class="fade-in">Electrical</span>
                 <span class="fade-in">Painting & Drywall</span>
             </div>
-            <div class="bounce-arrow" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">⮟</div>
+            <div class="bounce-arrow" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">▼</div>
         </div>
     </div>
     <div class="services-strip" id="services">
@@ -589,7 +596,7 @@
         <div class="scroll-arrow scroll-right" onclick="scrollGallery(300)">→</div>
     </div>
     <div class="modal" id="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()">×</span>
         <img class="modal-content" id="modal-image">
     </div>
     <div class="contact-strip" id="contact">
