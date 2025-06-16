@@ -35,6 +35,7 @@
             height: 90vh; /* Reduced to show part of the services strip */
             overflow: hidden;
             min-height: 400px; /* Minimum height for mobile */
+            position: relative; /* For positioning the arrow */
         }
         video {
             position: absolute;
@@ -114,21 +115,21 @@
         }
         .bounce-arrow {
             position: absolute;
-            bottom: 0; /* Moved to bottom edge */
+            bottom: 0; /* Moved to bottom of content (video strip) */
             left: 50%;
-            transform: translateX(-50%) translateY(-50px); /* Adjusted upward slightly to align with services line */
+            transform: translateX(-50%) translateY(-20px); /* Adjusted to sit just above services strip */
             font-size: 1.5em; /* Smaller for mobile */
             color: white;
             font-weight: 700; /* Thicker */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Drop shadow */
             animation: bounce 2s infinite; /* Re-added animation */
             cursor: pointer;
-            z-index: 1;
+            z-index: 2; /* Ensure it's above other content */
             padding: 10px; /* Touch target */
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(-10px); }
-            40% { transform: translateX(-50%) translateY(-50px); }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(-20px); }
+            40% { transform: translateX(-50%) translateY(-60px); }
             60% { transform: translateX(-50%) translateY(-40px); }
         }
         .services-strip {
@@ -387,10 +388,11 @@
                 padding: 10px;
                 justify-content: flex-start; /* Align content from top */
                 min-height: 300px; /* Ensure space for text */
+                text-align: center; /* Center text horizontally on mobile */
             }
             .content-container h1 {
                 font-size: 2.5em;
-                margin-top: 40px; /* Move down more on mobile */
+                margin-top: 120px; /* Move down more on mobile */
             }
             .content-container p.slogan {
                 font-size: 1.2em;
@@ -404,9 +406,13 @@
             .bounce-arrow {
                 font-size: 1.2em;
                 padding: 8px;
+                bottom: 0; /* Position at bottom of content on mobile */
+                transform: translateX(-50%) translateY(-20px); /* Adjusted to sit just above services strip */
+                position: absolute; /* Ensure proper positioning relative to content */
             }
             .services-strip {
                 padding: 20px 0;
+                position: relative; /* For arrow positioning */
             }
             .services-strip h2 {
                 font-size: 2em;
@@ -644,6 +650,18 @@
             topFoldElements.forEach(element => {
                 element.classList.add('visible');
             });
+        });
+
+        // Auto fade-in for all text on mobile after 1.5 seconds
+        window.addEventListener('load', function() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    const fadeInElements = document.querySelectorAll('.fade-in');
+                    fadeInElements.forEach(element => {
+                        element.classList.add('visible');
+                    });
+                }, 1500); // 1.5 seconds
+            }
         });
 
         function toggleMenu() {
