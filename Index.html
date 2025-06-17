@@ -48,6 +48,7 @@
             z-index: 0;
             transform: translate(-50%, -50%);
             object-fit: cover;
+            pointer-events: none; /* Disable user interaction to prevent iOS controls */
         }
         .content-container {
             position: relative;
@@ -235,6 +236,7 @@
             flex-shrink: 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer; /* Indicate clickable */
+            border-radius: 10px; /* Add slight rounding to corners */
         }
         .gallery .gallery-item:hover {
             transform: scale(1.05); /* Slight zoom on hover */
@@ -420,6 +422,7 @@
             .gallery .gallery-item {
                 min-width: 400px; /* Doubled from 200px */
                 height: 240px; /* Doubled from 120px */
+                border-radius: 10px; /* Add slight rounding to corners on mobile */
             }
             .gallery .gallery-container {
                 gap: 24px; /* Adjusted gap for mobile, doubled from 12px */
@@ -460,13 +463,12 @@
         <ul>
             <li><a href="#services" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' }); toggleMenu()">Services</a></li>
             <li><a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }); toggleMenu()">Gallery</a></li>
-           <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); toggleMenu()">About</a></li> 
             <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); toggleMenu()">Contact</a></li>
-            
+            <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); toggleMenu()">About</a></li>
         </ul>
     </div>
     <div class="content">
-        <video autoplay muted loop>
+        <video id="background-video" autoplay loop muted playsinline>
             <source src="https://i.imgur.com/5r2fs0S.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -602,14 +604,14 @@
         <span class="close" onclick="closeModal()">×</span>
         <img class="modal-content" id="modal-image">
     </div>
-     <div class="about-strip" id="about">
-        <h2 class="fade-in">About</h2>
-        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
     <div class="contact-strip" id="contact">
         <h2 class="fade-in">Contact</h2>
         <p class="fade-in">For inquiries or to schedule a service, please call us at (123) 456-7890 or email us at info@wagnerhomeimprovements.com. We are available Monday to Friday, 8 AM - 6 PM, and Saturday, 9 AM - 2 PM.</p>
     </div>
-   </div>
+    <div class="about-strip" id="about">
+        <h2 class="fade-in">About</h2>
+        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
+    </div>
     <script>
         function scrollGallery(distance) {
             const container = document.querySelector('.gallery-container');
@@ -712,7 +714,7 @@
             let isCloning = false;
 
             function cloneGallery() {
-                if (isCloning || galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth) {
+                if (isCloning || galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth - 100) {
                     return;
                 }
                 isCloning = true;
@@ -733,6 +735,28 @@
 
             // Initial clone to enable infinite scrolling
             cloneGallery();
+        });
+
+        // Ensure video auto-plays and loops on all devices
+        window.addEventListener('load', function() {
+            const video = document.getElementById('background-video');
+            video.muted = true; // Mute is required for autoplay on iOS and some browsers
+            video.play().catch(function(error) {
+                console.log("Autoplay prevented, trying again when user interacts:", error);
+                // Fallback: Play when user interacts with the page
+                document.body.addEventListener('touchstart', function startVideo() {
+                    video.play();
+                    document.body.removeEventListener('touchstart', startVideo); // Clean up
+                }, { once: true });
+                document.body.addEventListener('click', function startVideo() {
+                    video.play();
+                    document.body.removeEventListener('click', startVideo); // Clean up
+                }, { once: true });
+            });
+            video.addEventListener('canplay', function() {
+                video.play(); // Ensure playback starts when ready
+            });
+            video.loop = true; // Ensure loop works
         });
     </script>
 </body>
