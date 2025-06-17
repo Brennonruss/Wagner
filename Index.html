@@ -221,15 +221,15 @@
             overflow-x: auto;
             scroll-behavior: smooth;
             padding: 20px 0;
-            gap: 15px; /* Reduced gap for mobile */
+            gap: 30px; /* Doubled gap for larger items */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
         }
         .gallery .gallery-container::-webkit-scrollbar {
             display: none; /* Hide scrollbar for better look */
         }
         .gallery .gallery-item {
-            min-width: 250px; /* Reduced for mobile */
-            height: 150px; /* Reduced for mobile */
+            min-width: 500px; /* Doubled from 250px */
+            height: 300px; /* Doubled from 150px */
             background-size: cover;
             background-position: center;
             flex-shrink: 0;
@@ -418,8 +418,11 @@
                 width: 90%; /* Adjust for better centering on mobile */
             }
             .gallery .gallery-item {
-                min-width: 200px;
-                height: 120px;
+                min-width: 400px; /* Doubled from 200px */
+                height: 240px; /* Doubled from 120px */
+            }
+            .gallery .gallery-container {
+                gap: 24px; /* Adjusted gap for mobile, doubled from 12px */
             }
             .gallery .scroll-arrow {
                 font-size: 2em; /* Increased font size for consistency on mobile */
@@ -597,15 +600,15 @@
     <div class="modal" id="modal">
         <span class="close" onclick="closeModal()">×</span>
         <img class="modal-content" id="modal-image">
+    </div> <div class="about-strip" id="about">
+        <h2 class="fade-in">About</h2>
+        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
     </div>
     <div class="contact-strip" id="contact">
         <h2 class="fade-in">Contact</h2>
         <p class="fade-in">For inquiries or to schedule a service, please call us at (123) 456-7890 or email us at info@wagnerhomeimprovements.com. We are available Monday to Friday, 8 AM - 6 PM, and Saturday, 9 AM - 2 PM.</p>
     </div>
-    <div class="about-strip" id="about">
-        <h2 class="fade-in">About</h2>
-        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
-    </div>
+   
     <script>
         function scrollGallery(distance) {
             const container = document.querySelector('.gallery-container');
