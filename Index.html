@@ -242,7 +242,7 @@
         }
         .gallery .scroll-arrow {
             position: absolute;
-            top: 60%;
+            top: 50%;
             transform: translateY(-50%);
             font-size: 2em; /* Increased font size for consistency */
             color: #fff;
@@ -600,15 +600,15 @@
     <div class="modal" id="modal">
         <span class="close" onclick="closeModal()">×</span>
         <img class="modal-content" id="modal-image">
-    </div> <div class="about-strip" id="about">
-        <h2 class="fade-in">About</h2>
-        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
     </div>
     <div class="contact-strip" id="contact">
         <h2 class="fade-in">Contact</h2>
         <p class="fade-in">For inquiries or to schedule a service, please call us at (123) 456-7890 or email us at info@wagnerhomeimprovements.com. We are available Monday to Friday, 8 AM - 6 PM, and Saturday, 9 AM - 2 PM.</p>
     </div>
-   
+    <div class="about-strip" id="about">
+        <h2 class="fade-in">About</h2>
+        <p class="fade-in">Wagner Home Improvements has been serving the Bucks, Montgomery, and surrounding areas since 2010. Our team of skilled professionals is dedicated to providing high-quality home improvement services with a commitment to customer satisfaction. Contact us today to see how we can help with your next project!</p>
+    </div>
     <script>
         function scrollGallery(distance) {
             const container = document.querySelector('.gallery-container');
@@ -689,12 +689,50 @@
             const modalImage = document.getElementById('modal-image');
             modalImage.src = imageUrl;
             modal.style.display = 'flex';
+            // Add click event to close modal when clicking outside the image
+            modal.addEventListener('click', function closeOutside(e) {
+                if (e.target === modal && !modalImage.contains(e.target)) {
+                    closeModal();
+                    modal.removeEventListener('click', closeOutside); // Clean up event listener
+                }
+            });
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.style.display = 'none';
         }
+
+        // Infinite scrolling for gallery
+        window.addEventListener('load', function() {
+            const galleryContainer = document.querySelector('.gallery-container');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let totalWidth = galleryItems.length * (500 + 30); // 500px width + 30px gap
+            let isCloning = false;
+
+            function cloneGallery() {
+                if (isCloning || galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth) {
+                    return;
+                }
+                isCloning = true;
+                galleryItems.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    galleryContainer.appendChild(clone);
+                });
+                totalWidth += galleryItems.length * (500 + 30); // Update total width
+                isCloning = false;
+            }
+
+            galleryContainer.addEventListener('scroll', function() {
+                if (galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth - 100) { // Buffer to trigger early
+                    galleryContainer.scrollLeft = 0; // Reset to start seamlessly
+                    cloneGallery(); // Add more items
+                }
+            });
+
+            // Initial clone to enable infinite scrolling
+            cloneGallery();
+        });
     </script>
 </body>
 </html>
