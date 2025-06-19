@@ -246,43 +246,31 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2em; /* Increased font size for consistency */
-            color: #fff;
+            width: 60px; /* Larger touch target */
+            height: 60px; /* Larger touch target */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 50%; /* Circular button */
             cursor: pointer;
-            z-index: 1;
-            padding: 15px; /* Larger touch target */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Drop shadow */
+            z-index: 3;
+            transition: background-color 0.3s ease;
+        }
+        .gallery .scroll-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
+        }
+        .gallery .scroll-arrow svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            fill: #fff;
         }
         .gallery .scroll-left {
-            left: 10px;
+            left: 20px; /* Slight offset from left edge */
         }
         .gallery .scroll-right {
-            right: 10px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            color: white;
-            cursor: pointer;
+            right: 20px; /* Slight offset from right edge */
         }
         .contact-strip {
             width: 100%;
@@ -290,6 +278,7 @@
             text-align: center;
             color: #fff;
             z-index: 2; /* Above fade overlay */
+            background-color: rgba(0, 0, 0, 0.3); /* Black strip with 30% opacity */
         }
         .contact-strip h2 {
             font-family: 'Montserrat', sans-serif;
@@ -311,6 +300,7 @@
             text-align: center;
             color: #fff;
             z-index: 2; /* Above fade overlay */
+            background-color: rgba(0, 0, 0, 0.3); /* Black strip with 30% opacity */
         }
         .about-strip h2 {
             font-family: 'Montserrat', sans-serif;
@@ -428,7 +418,17 @@
                 gap: 24px; /* Adjusted gap for mobile, doubled from 12px */
             }
             .gallery .scroll-arrow {
-                font-size: 2em; /* Increased font size for consistency on mobile */
+                width: 50px; /* Adjusted for mobile */
+                height: 50px; /* Adjusted for mobile */
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+            }
+            .gallery .scroll-arrow:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            .gallery .scroll-arrow svg {
+                width: 16px;
+                height: 16px;
             }
             .contact-strip h2, .about-strip h2 {
                 font-size: 2em;
@@ -584,7 +584,11 @@
     </div>
     <div class="gallery" id="gallery">
         <h2 class="fade-in">Gallery</h2>
-        <div class="scroll-arrow scroll-left" onclick="scrollGallery(-300)">←</div>
+        <div class="scroll-arrow scroll-left" onclick="scrollGallery(-300)">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+        </div>
         <div class="gallery-container">
             <div class="gallery-item" style="background-image: url('https://i.imgur.com/T8V5sDF.jpg');" onclick="openModal('https://i.imgur.com/T8V5sDF.jpg')"></div>
             <div class="gallery-item" style="background-image: url('https://i.imgur.com/zpVf0Yd.jpg');" onclick="openModal('https://i.imgur.com/zpVf0Yd.jpg')"></div>
@@ -598,7 +602,11 @@
             <div class="gallery-item" style="background-image: url('https://i.imgur.com/BivQw8g.jpg');" onclick="openModal('https://i.imgur.com/BivQw8g.jpg')"></div>
             <div class="gallery-item" style="background-image: url('https://i.imgur.com/2VuQ48F.jpg');" onclick="openModal('https://i.imgur.com/2VuQ48F.jpg')"></div>
         </div>
-        <div class="scroll-arrow scroll-right" onclick="scrollGallery(300)">→</div>
+        <div class="scroll-arrow scroll-right" onclick="scrollGallery(300)">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+            </svg>
+        </div>
     </div>
     <div class="modal" id="modal">
         <span class="close" onclick="closeModal()">×</span>
