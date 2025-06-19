@@ -272,6 +272,33 @@
         .gallery .scroll-right {
             right: 20px; /* Slight offset from right edge */
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px; /* Match gallery item style */
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
         .contact-strip {
             width: 100%;
             padding: 40px 0;
@@ -698,20 +725,26 @@
         function openModal(imageUrl) {
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modal-image');
-            modalImage.src = imageUrl;
-            modal.style.display = 'flex';
-            // Add click event to close modal when clicking outside the image
-            modal.addEventListener('click', function closeOutside(e) {
-                if (e.target === modal && !modalImage.contains(e.target)) {
-                    closeModal();
-                    modal.removeEventListener('click', closeOutside); // Clean up event listener
-                }
-            });
+            if (modal && modalImage) {
+                modalImage.src = imageUrl;
+                modal.style.display = 'flex'; // Show the modal
+                // Prevent default behavior and stop propagation to avoid layout shift
+                modal.addEventListener('click', function closeOutside(e) {
+                    if (e.target === modal && !modalImage.contains(e.target)) {
+                        closeModal();
+                        modal.removeEventListener('click', closeOutside); // Clean up event listener
+                    }
+                }, { once: true }); // Ensure event listener is added only once
+            } else {
+                console.error('Modal or modal image element not found');
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
-            modal.style.display = 'none';
+            if (modal) {
+                modal.style.display = 'none';
+            }
         }
 
         // Infinite scrolling for gallery
@@ -748,23 +781,25 @@
         // Ensure video auto-plays and loops on all devices
         window.addEventListener('load', function() {
             const video = document.getElementById('background-video');
-            video.muted = true; // Mute is required for autoplay on iOS and some browsers
-            video.play().catch(function(error) {
-                console.log("Autoplay prevented, trying again when user interacts:", error);
-                // Fallback: Play when user interacts with the page
-                document.body.addEventListener('touchstart', function startVideo() {
-                    video.play();
-                    document.body.removeEventListener('touchstart', startVideo); // Clean up
-                }, { once: true });
-                document.body.addEventListener('click', function startVideo() {
-                    video.play();
-                    document.body.removeEventListener('click', startVideo); // Clean up
-                }, { once: true });
-            });
-            video.addEventListener('canplay', function() {
-                video.play(); // Ensure playback starts when ready
-            });
-            video.loop = true; // Ensure loop works
+            if (video) {
+                video.muted = true; // Mute is required for autoplay on iOS and some browsers
+                video.play().catch(function(error) {
+                    console.log("Autoplay prevented, trying again when user interacts:", error);
+                    // Fallback: Play when user interacts with the page
+                    document.body.addEventListener('touchstart', function startVideo() {
+                        video.play();
+                        document.body.removeEventListener('touchstart', startVideo); // Clean up
+                    }, { once: true });
+                    document.body.addEventListener('click', function startVideo() {
+                        video.play();
+                        document.body.removeEventListener('click', startVideo); // Clean up
+                    }, { once: true });
+                });
+                video.addEventListener('canplay', function() {
+                    video.play(); // Ensure playback starts when ready
+                });
+                video.loop = true; // Ensure loop works
+            }
         });
     </script>
 </body>
