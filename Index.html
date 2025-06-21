@@ -12,7 +12,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Enables smooth scrolling */
+            scroll-behavior: smooth;
             background: url('https://i.imgur.com/OoLT1eN.jpg') no-repeat center center fixed;
             background-size: cover;
         }
@@ -22,20 +22,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000; /* Black overlay */
+            background: #000;
             z-index: 1;
             opacity: 1;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
         .content, .services-strip, .gallery, .contact-strip, .about-strip {
             position: relative;
-            z-index: 2; /* Above fade overlay */
+            z-index: 2;
         }
         .content {
-            height: 90vh; /* Reduced to show part of the services strip */
+            height: 90vh;
             overflow: hidden;
-            min-height: 400px; /* Minimum height for mobile */
-            position: relative; /* For positioning the arrow */
+            min-height: 400px;
+            position: relative;
         }
         video {
             position: absolute;
@@ -48,7 +48,7 @@
             z-index: 0;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            pointer-events: none; /* Disable user interaction to prevent iOS controls */
+            pointer-events: none;
         }
         .content-container {
             position: relative;
@@ -60,7 +60,7 @@
             justify-content: center;
             z-index: 1;
             padding: 20px;
-            min-height: 300px; /* Ensure minimum height for mobile */
+            min-height: 300px;
         }
         .fade-in {
             opacity: 0;
@@ -93,40 +93,40 @@
         }
         .content-container .services {
             position: absolute;
-            bottom: 5vh; /* Adjusted to prevent overlap */
-            width: 100vw; /* Full screen width */
+            bottom: 5vh;
+            width: 100vw;
             background: rgba(0, 0, 0, 0.3);
-            padding: 15px 0; /* Reduced padding */
+            padding: 15px 0;
             display: flex;
             justify-content: center;
-            gap: 10px; /* Reduced gap for mobile */
+            gap: 10px;
             flex-wrap: wrap;
             z-index: 1;
-            left: 0; /* Ensure it starts from the left edge */
+            left: 0;
         }
         .content-container .services span {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 0.9em; /* Slightly smaller for mobile */
+            font-size: 0.9em;
             color: #f0f0f0;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 5px 10px;
-            white-space: nowrap; /* Prevent text wrapping */
+            white-space: nowrap;
         }
         .bounce-arrow {
             position: absolute;
-            bottom: 10px; /* Position near the bottom of content, above services strip */
+            bottom: 10px;
             left: 50%;
-            transform: translateX(-50%) translateY(0); /* Remove negative translateY to keep it visible */
-            font-size: 1.5em; /* Smaller for mobile */
+            transform: translateX(-50%) translateY(0);
+            font-size: 1.5em;
             color: white;
-            font-weight: 700; /* Thicker */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Drop shadow */
-            animation: bounce 2s infinite; /* Re-added animation */
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: bounce 2s infinite;
             cursor: pointer;
-            z-index: 4; /* Increased z-index to ensure visibility above all */
-            padding: 10px; /* Touch target */
+            z-index: 4;
+            padding: 10px;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
@@ -136,12 +136,12 @@
         .services-strip {
             width: 100%;
             padding: 40px 0;
-            background: #fff; /* White background */
+            background: #fff;
             text-align: left;
-            color: #4a4a4a; /* Dark grey text */
+            color: #4a4a4a;
             margin: 0;
             position: relative;
-            z-index: 2; /* Above fade overlay */
+            z-index: 2;
         }
         .services-strip h2 {
             font-family: 'Montserrat', sans-serif;
@@ -157,7 +157,7 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center align buttons horizontally */
+            align-items: center;
         }
         .services-strip .tap-for-details {
             font-family: 'Montserrat', sans-serif;
@@ -172,10 +172,10 @@
             margin: 5px 0;
             background: #f5f5f5;
             border-bottom: 1px solid #ddd;
-            text-align: center; /* Centered text */
-            font-family: 'Montserrat', sans-serif; /* Regular Montserrat */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 400;
-            width: 80%; /* Constrain width for better centering */
+            width: 80%;
             transition: background 0.3s ease;
         }
         .services-strip .service-item:hover {
@@ -188,13 +188,13 @@
             display: none;
             padding: 10px 20px 20px;
             background: #fff;
-            text-align: center; /* Center detail text */
+            text-align: center;
         }
         .services-strip .service-details ul {
             list-style-type: disc;
             padding-left: 20px;
             margin: 0;
-            text-align: left; /* Keep list items left-aligned within centered container */
+            text-align: left;
         }
         .services-strip .service-details ul li {
             font-family: 'Georgia', serif;
@@ -208,69 +208,30 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            z-index: 2; /* Above fade overlay */
+            z-index: 2;
         }
-        .gallery h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 2.5em;
-            color: #fff;
-            margin-bottom: 20px;
+        .carousel {
+            width: 80vw;
+            margin: 0 auto; /* Center the gallery grid */
+            position: relative;
+            perspective: 500px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
         }
-        .gallery .gallery-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 0;
-            gap: 30px; /* Doubled gap for larger items */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-        }
-        .gallery .gallery-container::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for better look */
-        }
-        .gallery .gallery-item {
-            min-width: 500px; /* Doubled from 250px */
-            height: 300px; /* Doubled from 150px */
+        .carousel__item {
+            height: 200px;
+            border-radius: 8px;
             background-size: cover;
             background-position: center;
-            flex-shrink: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer; /* Indicate clickable */
-            border-radius: 10px; /* Add slight rounding to corners */
+            transform-origin: center center;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
         }
-        .gallery .gallery-item:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        .gallery .scroll-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px; /* Larger touch target */
-            height: 60px; /* Larger touch target */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            border-radius: 50%; /* Circular button */
-            cursor: pointer;
-            z-index: 3;
-            transition: background-color 0.3s ease;
-        }
-        .gallery .scroll-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
-        }
-        .gallery .scroll-arrow svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            fill: #fff;
-        }
-        .gallery .scroll-left {
-            left: 20px; /* Slight offset from left edge */
-        }
-        .gallery .scroll-right {
-            right: 20px; /* Slight offset from right edge */
+        .carousel__item:hover {
+            transform: scale(1.1) translateZ(20px);
         }
         .modal {
             display: none;
@@ -279,7 +240,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -288,7 +249,7 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            border-radius: 10px; /* Match gallery item style */
+            border-radius: 10px;
         }
         .close {
             position: absolute;
@@ -304,8 +265,8 @@
             padding: 40px 0;
             text-align: center;
             color: #fff;
-            z-index: 2; /* Above fade overlay */
-            background-color: rgba(0, 0, 0, 0.3); /* Black strip with 30% opacity */
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.3);
         }
         .contact-strip h2 {
             font-family: 'Montserrat', sans-serif;
@@ -326,8 +287,8 @@
             padding: 40px 0;
             text-align: center;
             color: #fff;
-            z-index: 2; /* Above fade overlay */
-            background-color: rgba(0, 0, 0, 0.3); /* Black strip with 30% opacity */
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.3);
         }
         .about-strip h2 {
             font-family: 'Montserrat', sans-serif;
@@ -351,8 +312,8 @@
             color: white;
             cursor: pointer;
             z-index: 3;
-            padding: 10px; /* Touch target */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Small drop shadow */
+            padding: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .menu {
             display: none;
@@ -394,8 +355,8 @@
             color: white;
             text-decoration: none;
             z-index: 3;
-            padding: 10px; /* Touch target */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Small drop shadow */
+            padding: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         @media (max-width: 768px) {
             .content {
@@ -405,13 +366,13 @@
             .content-container {
                 height: auto;
                 padding: 10px;
-                justify-content: flex-start; /* Align content from top */
-                min-height: 300px; /* Ensure space for text */
-                text-align: center; /* Center text horizontally on mobile */
+                justify-content: flex-start;
+                min-height: 300px;
+                text-align: center;
             }
             .content-container h1 {
                 font-size: 2.5em;
-                margin-top: 120px; /* Move down more on mobile */
+                margin-top: 120px;
             }
             .content-container p.slogan {
                 font-size: 1.2em;
@@ -420,42 +381,31 @@
                 font-size: 1em;
             }
             .content-container .services {
-                display: none; /* Hide services on mobile */
+                display: none;
             }
             .bounce-arrow {
-                display: none; /* Remove bouncing arrow on mobile */
+                display: none;
             }
             .services-strip {
                 padding: 20px 0;
-                position: relative; /* For arrow positioning */
+                position: relative;
             }
             .services-strip h2 {
                 font-size: 2em;
             }
             .services-strip .service-item {
                 padding: 10px 15px;
-                width: 90%; /* Adjust for better centering on mobile */
+                width: 90%;
             }
-            .gallery .gallery-item {
-                min-width: 400px; /* Doubled from 200px */
-                height: 240px; /* Doubled from 120px */
-                border-radius: 10px; /* Add slight rounding to corners on mobile */
+            .carousel {
+                width: 90vw;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
-            .gallery .gallery-container {
-                gap: 24px; /* Adjusted gap for mobile, doubled from 12px */
+            .carousel__item {
+                height: 150px;
             }
-            .gallery .scroll-arrow {
-                width: 50px; /* Adjusted for mobile */
-                height: 50px; /* Adjusted for mobile */
-                background-color: rgba(0, 0, 0, 0.5);
-                border-radius: 50%;
-            }
-            .gallery .scroll-arrow:hover {
-                background-color: rgba(0, 0, 0, 0.7);
-            }
-            .gallery .scroll-arrow svg {
-                width: 16px;
-                height: 16px;
+            .gallery {
+                padding: 20px 0;
             }
             .contact-strip h2, .about-strip h2 {
                 font-size: 2em;
@@ -478,7 +428,7 @@
             }
         }
         nav {
-            display: none; /* Hidden, replaced by burger menu */
+            display: none;
         }
     </style>
 </head>
@@ -610,29 +560,22 @@
         </div>
     </div>
     <div class="gallery" id="gallery">
-        <h2 class="fade-in">Gallery</h2>
-        <div class="scroll-arrow scroll-left" onclick="scrollGallery(-300)">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-        </div>
-        <div class="gallery-container">
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/T8V5sDF.jpg');" onclick="openModal('https://i.imgur.com/T8V5sDF.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/zpVf0Yd.jpg');" onclick="openModal('https://i.imgur.com/zpVf0Yd.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/f4hp2Qj.jpg');" onclick="openModal('https://i.imgur.com/f4hp2Qj.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/E7fcnIe.jpg');" onclick="openModal('https://i.imgur.com/E7fcnIe.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/R6IbZiP.jpg');" onclick="openModal('https://i.imgur.com/R6IbZiP.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/84Bw4Qv.jpg');" onclick="openModal('https://i.imgur.com/84Bw4Qv.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/0qPnohu.jpg');" onclick="openModal('https://i.imgur.com/0qPnohu.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/UKnVyt5.jpg');" onclick="openModal('https://i.imgur.com/UKnVyt5.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/sVmKvGX.jpg');" onclick="openModal('https://i.imgur.com/sVmKvGX.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/BivQw8g.jpg');" onclick="openModal('https://i.imgur.com/BivQw8g.jpg')"></div>
-            <div class="gallery-item" style="background-image: url('https://i.imgur.com/2VuQ48F.jpg');" onclick="openModal('https://i.imgur.com/2VuQ48F.jpg')"></div>
-        </div>
-        <div class="scroll-arrow scroll-right" onclick="scrollGallery(300)">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-            </svg>
+        <div class="carousel">
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/T8V5sDF.jpg');" onclick="openModal('https://i.imgur.com/T8V5sDF.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/zpVf0Yd.jpg');" onclick="openModal('https://i.imgur.com/zpVf0Yd.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/f4hp2Qj.jpg');" onclick="openModal('https://i.imgur.com/f4hp2Qj.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/E7fcnIe.jpg');" onclick="openModal('https://i.imgur.com/E7fcnIe.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/R6IbZiP.jpg');" onclick="openModal('https://i.imgur.com/R6IbZiP.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/84Bw4Qv.jpg');" onclick="openModal('https://i.imgur.com/84Bw4Qv.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/0qPnohu.jpg');" onclick="openModal('https://i.imgur.com/0qPnohu.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/UKnVyt5.jpg');" onclick="openModal('https://i.imgur.com/UKnVyt5.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/sVmKvGX.jpg');" onclick="openModal('https://i.imgur.com/sVmKvGX.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/BivQw8g.jpg');" onclick="openModal('https://i.imgur.com/BivQw8g.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/2VuQ48F.jpg');" onclick="openModal('https://i.imgur.com/2VuQ48F.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/BeBorrr.jpg');" onclick="openModal('https://i.imgur.com/BeBorrr.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/5hVNooi.jpg');" onclick="openModal('https://i.imgur.com/5hVNooi.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/6UqBkmX.jpg');" onclick="openModal('https://i.imgur.com/6UqBkmX.jpg')"></div>
+            <div class="carousel__item" style="background-image: url('https://i.imgur.com/nHgMAbu.jpg');" onclick="openModal('https://i.imgur.com/nHgMAbu.jpg')"></div>
         </div>
     </div>
     <div class="modal" id="modal">
@@ -649,7 +592,7 @@
     </div>
     <script>
         function scrollGallery(distance) {
-            const container = document.querySelector('.gallery-container');
+            const container = document.querySelector('.carousel');
             container.scrollBy({
                 left: distance,
                 behavior: 'smooth'
@@ -657,7 +600,7 @@
         }
         let lastScroll = 0;
         window.addEventListener('scroll', function() {
-            const overlay = document.querySelector('.fade-overlay'); // Corrected to querySelector
+            const overlay = document.querySelector('.fade-overlay');
             const scrollPosition = window.pageYOffset;
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             const servicesOffset = document.getElementById('services').offsetTop;
@@ -666,15 +609,14 @@
 
             if (scrollDirection === 'down' && scrollPosition < servicesOffset) {
                 const opacity = 1 - (scrollPosition / servicesOffset);
-                overlay.style.opacity = Math.max(0, opacity); // Fade from 1 to 0 as scrolling down
+                overlay.style.opacity = Math.max(0, opacity);
             } else if (scrollDirection === 'up' && scrollPosition <= servicesOffset) {
                 const opacity = scrollPosition / servicesOffset;
-                overlay.style.opacity = Math.min(1, opacity); // Fade from 0 to 1 as scrolling up
+                overlay.style.opacity = Math.min(1, opacity);
             } else if (scrollPosition >= servicesOffset) {
-                overlay.style.opacity = 0; // Fully clear after services strip
+                overlay.style.opacity = 0;
             }
 
-            // Fade-in effect for text below services strip
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach(element => {
                 const rect = element.getBoundingClientRect();
@@ -685,7 +627,6 @@
             });
         });
 
-        // Auto fade-in for top fold text on page load
         window.addEventListener('load', function() {
             const topFoldElements = document.querySelectorAll('.content-container .fade-in');
             topFoldElements.forEach(element => {
@@ -693,7 +634,6 @@
             });
         });
 
-        // Auto fade-in for all text on mobile after 1.5 seconds
         window.addEventListener('load', function() {
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
@@ -701,7 +641,7 @@
                     fadeInElements.forEach(element => {
                         element.classList.add('visible');
                     });
-                }, 1500); // 1.5 seconds
+                }, 1500);
             }
         });
 
@@ -727,14 +667,14 @@
             const modalImage = document.getElementById('modal-image');
             if (modal && modalImage) {
                 modalImage.src = imageUrl;
-                modal.style.display = 'flex'; // Show the modal
-                // Prevent default behavior and stop propagation to avoid layout shift
+                modal.style.display = 'flex';
+                modalImage.style.display = 'block';
                 modal.addEventListener('click', function closeOutside(e) {
                     if (e.target === modal && !modalImage.contains(e.target)) {
                         closeModal();
-                        modal.removeEventListener('click', closeOutside); // Clean up event listener
+                        modal.removeEventListener('click', closeOutside);
                     }
-                }, { once: true }); // Ensure event listener is added only once
+                }, { once: true });
             } else {
                 console.error('Modal or modal image element not found');
             }
@@ -744,61 +684,33 @@
             const modal = document.getElementById('modal');
             if (modal) {
                 modal.style.display = 'none';
+                const modalImage = document.getElementById('modal-image');
+                if (modalImage) {
+                    modalImage.style.display = 'none';
+                }
             }
         }
 
-        // Infinite scrolling for gallery
-        window.addEventListener('load', function() {
-            const galleryContainer = document.querySelector('.gallery-container');
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            let totalWidth = galleryItems.length * (500 + 30); // 500px width + 30px gap
-            let isCloning = false;
-
-            function cloneGallery() {
-                if (isCloning || galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth - 100) {
-                    return;
-                }
-                isCloning = true;
-                galleryItems.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    galleryContainer.appendChild(clone);
-                });
-                totalWidth += galleryItems.length * (500 + 30); // Update total width
-                isCloning = false;
-            }
-
-            galleryContainer.addEventListener('scroll', function() {
-                if (galleryContainer.scrollLeft >= totalWidth - galleryContainer.clientWidth - 100) { // Buffer to trigger early
-                    galleryContainer.scrollLeft = 0; // Reset to start seamlessly
-                    cloneGallery(); // Add more items
-                }
-            });
-
-            // Initial clone to enable infinite scrolling
-            cloneGallery();
-        });
-
-        // Ensure video auto-plays and loops on all devices
+        // No auto-scroll or cloning needed since all images are visible
         window.addEventListener('load', function() {
             const video = document.getElementById('background-video');
             if (video) {
-                video.muted = true; // Mute is required for autoplay on iOS and some browsers
+                video.muted = true;
                 video.play().catch(function(error) {
                     console.log("Autoplay prevented, trying again when user interacts:", error);
-                    // Fallback: Play when user interacts with the page
                     document.body.addEventListener('touchstart', function startVideo() {
                         video.play();
-                        document.body.removeEventListener('touchstart', startVideo); // Clean up
+                        document.body.removeEventListener('touchstart', startVideo);
                     }, { once: true });
                     document.body.addEventListener('click', function startVideo() {
                         video.play();
-                        document.body.removeEventListener('click', startVideo); // Clean up
+                        document.body.removeEventListener('click', startVideo);
                     }, { once: true });
                 });
                 video.addEventListener('canplay', function() {
-                    video.play(); // Ensure playback starts when ready
+                    video.play();
                 });
-                video.loop = true; // Ensure loop works
+                video.loop = true;
             }
         });
     </script>
